@@ -1,0 +1,47 @@
+/* 
+    Created on : 19-sep-2020, 12:24:56
+    Author     : chicovi
+*/
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#game {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#buttons {
+    align-self: flex-end;
+    height: 0.1vh;
+}
+
+#scoreboard {
+    height: 0.4vh;
+}
+
+#scoreboard table {
+    width: 100%;
+    text-align: center;
+}
+
+#buttonbar {
+    display: flex;
+    justify-content: center;
+}
+
+#buttonbar button {
+    margin: 0.5vw;
+}
+
+#rounds {
+    text-align: center;
+}
+
+.gameMove {
+    text-align: center;
+}
+

@@ -1,7 +1,5 @@
 package com.vcr.rps.dto;
 
-import com.vcr.rps.model.GameResult.Result;
-import com.vcr.rps.model.Moves;
 import java.io.Serializable;
 
 /**
@@ -10,11 +8,11 @@ import java.io.Serializable;
  */
 public class GameResultDto implements Serializable {
     
-    Moves player1Move;
-    Moves player2Move;
-    Result gameResult;
+    String player1Move;
+    String player2Move;
+    String gameResult;
 
-    public GameResultDto(Moves player1Move, Moves player2Move, Result gameResult) {
+    public GameResultDto(String player1Move, String player2Move, String gameResult) {
         this.player1Move = player1Move;
         this.player2Move = player2Move;
         this.gameResult = gameResult;
@@ -23,27 +21,27 @@ public class GameResultDto implements Serializable {
     public GameResultDto() {
     }
 
-    public Moves getPlayer1Move() {
+    public String getPlayer1Move() {
         return player1Move;
     }
 
-    public void setPlayer1Move(Moves player1Move) {
+    public void setPlayer1Move(String player1Move) {
         this.player1Move = player1Move;
     }
 
-    public Moves getPlayer2Move() {
+    public String getPlayer2Move() {
         return player2Move;
     }
 
-    public void setPlayer2Move(Moves player2Move) {
+    public void setPlayer2Move(String player2Move) {
         this.player2Move = player2Move;
     }
 
-    public Result getGameResult() {
+    public String getGameResult() {
         return gameResult;
     }
 
-    public void setGameResult(Result gameResult) {
+    public void setGameResult(String gameResult) {
         this.gameResult = gameResult;
     }
     

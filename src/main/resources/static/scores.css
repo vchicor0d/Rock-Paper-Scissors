@@ -1,0 +1,13 @@
+/* 
+    Created on : 19-sep-2020, 15:36:10
+    Author     : chicovi
+*/
+
+body {
+    text-align: center;
+}
+
+#statistics {
+    display: flex;
+    justify-content: space-between;
+}

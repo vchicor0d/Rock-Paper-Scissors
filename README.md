@@ -1,6 +1,6 @@
 # README
 
-Rock-paper-scissors game where one player always plays Rock and the other plays a random move, as a backend developer I focused on build a good backend service, but failed to create the ReactJS frontend as requested as I had to learn it form scratch.
+Rock-paper-scissors game where one player always plays Rock and the other plays a random move, as a backend developer I focused on build a good backend service.
 
 ## Backend
 Application is built over Spring Boot and runs in port 8080,
@@ -15,4 +15,8 @@ run 'mvn spring-boot:run' on root folder to start.
 - /scores/totalDraws: Shows total games with draw result
 
 ## Frontend
-Built with ReactJS, didn't finish because of my missknowledge of the React library, button plays a game and shows the result on the browser console.
+Built with Thymeleaf template engine, used javascript to manage client-side data and to do calls to the backend endpoinds providing the required services.
+
+### Views
+- / : Main view to play a game and show recent game results
+- /statistics: Shows statistics of the game

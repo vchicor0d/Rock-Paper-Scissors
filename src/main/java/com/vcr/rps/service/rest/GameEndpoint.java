@@ -38,7 +38,7 @@ public class GameEndpoint {
         ResponseEntity<GameResultDto> result;
         
         if (gameResult != null) {
-            Function<GameResult, GameResultDto> dtoConverter = entity -> new GameResultDto(entity.getPlayer1Move(), entity.getPlayer2Move(), entity.getResult());
+            Function<GameResult, GameResultDto> dtoConverter = entity -> new GameResultDto(entity.getPlayer1Move().name(), entity.getPlayer2Move().name(), entity.getResult().getResultText());
             result = new ResponseEntity<>(dtoConverter.apply(gameResult), HttpStatus.OK);
         } else {
             result = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

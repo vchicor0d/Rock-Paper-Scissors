@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Rock, Paper, Scissors - Total statistics</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" data-th-href="@{/scores.css}">
+    </head>
+    <body>
+        <h1>Game Statistics</h1>
+        <div id="statistics">
+            <div>
+                <h2 class="title">Total Rounds Played</h2>
+                <h3 class="value" id="rounds"></h3>
+            </div>
+            <div>
+                <h2 class="title">Total Rounds Won By Player 1</h2>
+                <h3 class="value" id="p1wins"></h3>
+            </div>
+            <div>
+                <h2 class="title">Total Rounds Won By Player 2</h2>
+                <h3 class="value" id="p2wins"></h3>
+            </div>
+            <div>
+                <h2 class="title">Total Rounds With Draw Result</h2>
+                <h3 class="value" id="draws"></h3>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            window.onload = async () => {
+                const totalGamesResponse = await fetch('/scores/totalGames');
+                const totalGames = await totalGamesResponse.json();
+                const totalP1WinsResponse = await fetch('/scores/totalP1Wins');
+                const totalP1Wins = await totalP1WinsResponse.json();
+                const totalP2WinsResponse = await fetch('/scores/totalP2Wins');
+                const totalP2Wins = await totalP2WinsResponse.json();
+                const totalDrawsResponse = await fetch('/scores/totalDraws');
+                const totalDraws = await totalDrawsResponse.json();
+
+                const rounds = document.getElementById("rounds");
+                rounds.innerHTML = totalGames;
+
+                const p1wins = document.getElementById("p1wins");
+                p1wins.innerHTML = totalP1Wins;
+
+                const p2wins = document.getElementById("p2wins");
+                p2wins.innerHTML = totalP2Wins;
+
+                const draws = document.getElementById("draws");
+                draws.innerHTML = totalDraws;
+            }
+        </script>
+    </body>
+</html>

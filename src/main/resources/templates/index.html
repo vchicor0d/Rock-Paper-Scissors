@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Rock, Paper, Scissors!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" data-th-href="@{/index.css}">
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            const playGame = async () => {
+                const response = await fetch('/game/play');
+                const gameResult = await response.json();
+
+                console.log(gameResult);
+
+                document.getElementById("gameResult").innerHTML = gameResult.gameResult;
+
+                var roundsPlayed = parseInt(document.getElementById("roundCount").innerHTML, 10);
+                roundsPlayed = roundsPlayed + 1;
+                document.getElementById("roundCount").innerHTML = roundsPlayed;
+
+                const p1Move = document.getElementById("player1");
+                const p2Move = document.getElementById("player2");
+                
+                if (roundsPlayed > 1) {
+                    p1Move.removeChild(p1Move.lastChild);
+                    p2Move.removeChild(p2Move.lastChild);
+                }
+                
+                p1Move.appendChild(document.createTextNode(gameResult.player1Move));
+                p2Move.appendChild(document.createTextNode(gameResult.player2Move));
+
+                const scoreTable = document.getElementById("scores");
+
+                const gameRow = document.createElement("tr");
+                gameRow.class = "gameRow";
+
+                const gameRowP1 = document.createElement("td");
+                gameRowP1.appendChild(document.createTextNode(gameResult.player1Move));
+
+                const gameRowResult = document.createElement("td");
+                gameRowResult.appendChild(document.createTextNode(gameResult.gameResult));
+
+                const gameRowP2 = document.createElement("td");
+                gameRowP2.appendChild(document.createTextNode(gameResult.player2Move));
+
+                gameRow.appendChild(gameRowP1);
+                gameRow.appendChild(gameRowResult);
+                gameRow.appendChild(gameRowP2);
+
+                scoreTable.prepend(gameRow);
+
+            }
+
+            const reset = () => {
+                const roundCount = document.getElementById("roundCount");
+
+                if (parseInt(roundCount.innerHTML,10) > 0) {
+                    const scores = document.getElementById("scores");
+                    const player1 = document.getElementById("player1");
+                    const player2 = document.getElementById("player2");
+                    const gameResult = document.getElementById("gameResult");
+
+                    while (scores.firstChild) {
+                        scores.removeChild(scores.firstChild)
+                    }
+
+                    player1.removeChild(player1.lastChild);
+                    player2.removeChild(player2.lastChild);
+
+                    gameResult.innerHTML = "Press \"Play Round!\" button to play";
+                    roundCount.innerHTML = 0;
+                }
+            }
+        </script>
+
+        <div id="game">
+            <div id="player1" class="gameMove">
+                <h2>Player 1 Move</h2>
+            </div>
+            <div id="rounds">
+                <h2>Rounds Played</h2>
+                <span id="roundCount">0</span>
+                <h2 id="gameResult">Press "Play Round!" button to play</h2>
+            </div>
+            <div id="player2" class="gameMove">
+                <h2>Player 2 Move</h2>
+            </div>
+        </div>
+        <div id="buttonbar">
+            <button id="play" onclick="playGame()">Play Round!</button>
+            <button id="reset" onclick="reset()">Restart Game</button>
+        </div>
+        <div id="scoreboard">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player 1 Move</th>
+                        <th>Game Result</th>
+                        <th>Player 2 Move</th>
+                    </tr>
+                </thead>
+                <tbody id="scores">
+
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
